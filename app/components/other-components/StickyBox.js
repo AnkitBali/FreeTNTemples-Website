@@ -158,38 +158,72 @@
 // export default StickyButton;
 
 
-// StickyButton.js
+// StickyBox.js
 import React, { useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Box, Button, Text, Flex, Image } from '@chakra-ui/react';
 
-const StickyButton = () => {
-    const [isVisible, setIsVisible] = useState(true);
-    const isMobile = useMediaQuery({ maxWidth: 767 });
+export const isVisInViewport = element => {
+    const rect = element.getBoundingClientRect();
+    // console.log('rect', rect.top, rect.height / 3);
+    return (
+        rect.top <= rect.height / 4 && rect.top + rect.height > 0 && rect.left >= 0
+    );
+};
 
-    useEffect(() => {
-        window.addEventListener("scroll", listenToScroll);
-        return () => window.removeEventListener("scroll", listenToScroll);
-    }, []);
 
-    const listenToScroll = () => {
+const StickyBox = () => {
+    // const [isVisible, setIsVisible] = useState(true);
+    // const isMobile = useMediaQuery({ maxWidth: 767 });
+    const [isSticky, setIsSticky] = useState(false);
+
+    const handleScroll = () => {
+        const stickyBoxOffsetTop = document.getElementById('sticky-box').offsetTop;
         const scrollPosition = window.scrollY;
-        const triggerHeight = isMobile ? window.innerHeight / 2 : 100; // Adjust the trigger height as needed
-
-        setIsVisible(scrollPosition > triggerHeight);
+        setIsSticky(scrollPosition >= stickyBoxOffsetTop);
     };
 
-    return isVisible && (
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    
+
+    // const listenToScroll = () => {
+    //     // const footerDiv = document.getElementById('footer');
+    //     const heightToHideFrom = window.innerHeight/2.5;
+    //     {console.log({heightToHideFrom})}
+
+    //     const winScroll =
+    //         document.body.scrollTop || document.documentElement.scrollTop;
+
+    //         {console.log({winScroll})}
+
+    //     if (winScroll > heightToHideFrom) {
+            
+    //             setIsVisible(true);
+            
+    //     } else {
+    //         setIsVisible(false);
+    //     }
+    // };
+
+    return (
         <Box
-            position="fixed"
+            id="sticky-box"
+            position={isSticky ? "fixed" : "absolute"}
+            //  position="fixed"
             top="50%"
-            right="10%"
+            right={isSticky ? "10%" : "-250%"}
             transform="translateY(-50%)"
             p={6}
             bgColor="white"
             boxShadow="2xl"
             textAlign="center"
             width="400px"
+            // mt={100}
+            zIndex={2}
         >
             <Text fontSize="32px" fontWeight="bold" color="#000000" mb={8}>
                 #FreeTNTemples
@@ -234,4 +268,4 @@ const StickyButton = () => {
     );
 };
 
-export default StickyButton;
+export default StickyBox;

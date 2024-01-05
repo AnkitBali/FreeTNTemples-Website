@@ -5,6 +5,8 @@
 import React, { useState } from 'react';
 import { Box, Button, Text, Flex, Image, AspectRatio, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, useDisclosure } from '@chakra-ui/react';
 import EmbeddedYouTubeVideo from '../other-components/EmbeddedYouTubeVideo';
+import StickyBox from '../other-components/StickyBox';
+// import StickyBox from '../other-components/StickyBox';
 
 
 const TopDescription = () => {
@@ -17,16 +19,30 @@ const TopDescription = () => {
     };
 
     return (
-        <Box position="relative" overflow="hidden">
+        <Box
+        position="relative" 
+        overflow="hidden"
+        // align="center"
+        // justify="space-between"
+            >
             {/* Background Image */}
             <Image
                 src="/bg-graphics.jpg"
                 layout="fill"
+                // objectFit="cover"
+                // alt="Background Image"
+                // position="absolute"
+                // top={0}
+                // left={0}
+                // right={0}
+                // bottom={0}
                 objectFit="cover"
                 alt="Background Image"
+                zIndex={-1}
             />
 
             {/* Content */}
+            <Flex>
             <Box
                 position="absolute"
                 top="50%"
@@ -35,6 +51,8 @@ const TopDescription = () => {
                 color="white"
                 textAlign="left"
                 p={8}
+                flex="1"
+                zIndex={1}
             >
                 {/* Main Text */}
                 <Box width="600px">
@@ -56,6 +74,12 @@ const TopDescription = () => {
                     videoSrc='https://www.youtube.com/embed/KHkxs7Cnwp4'
                     />
             </Box>
+            <Box 
+            flex='1'
+            >
+                <StickyBox />
+            </Box>
+            </Flex>
 
             {/* Modal for Video Playback */}
             {/* <Modal isOpen={isOpen} onClose={() => { onClose(); setShowPlayButton(true); }} size="full">
