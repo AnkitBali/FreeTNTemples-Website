@@ -173,8 +173,6 @@ export const isVisInViewport = element => {
 
 
 const StickyBox = () => {
-    // const [isVisible, setIsVisible] = useState(true);
-    // const isMobile = useMediaQuery({ maxWidth: 767 });
     const [isSticky, setIsSticky] = useState(false);
 
     const handleScroll = () => {
@@ -188,41 +186,19 @@ const StickyBox = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    
-
-    // const listenToScroll = () => {
-    //     // const footerDiv = document.getElementById('footer');
-    //     const heightToHideFrom = window.innerHeight/2.5;
-    //     {console.log({heightToHideFrom})}
-
-    //     const winScroll =
-    //         document.body.scrollTop || document.documentElement.scrollTop;
-
-    //         {console.log({winScroll})}
-
-    //     if (winScroll > heightToHideFrom) {
-            
-    //             setIsVisible(true);
-            
-    //     } else {
-    //         setIsVisible(false);
-    //     }
-    // };
-
+  
     return (
         <Box
             id="sticky-box"
             position={isSticky ? "fixed" : "absolute"}
-            //  position="fixed"
-            top="50%"
-            right={isSticky ? "10%" : "-250%"}
+            top={isSticky ? "50%" : "50%"}
+            right={isSticky ? "10%" : "10%"}
             transform="translateY(-50%)"
             p={6}
             bgColor="white"
             boxShadow="2xl"
             textAlign="center"
             width="400px"
-            // mt={100}
             zIndex={2}
         >
             <Text fontSize="32px" fontWeight="bold" color="#000000" mb={8}>
@@ -253,17 +229,10 @@ const StickyBox = () => {
             <Image 
             />
             <Flex align="center" justify="center">
-                {/* Whatsapp Icon */}
-                
                 <Image src="/whatsapp-icon.png" alt="Whatsapp Icon" boxSize="50px" mx={2} />
-                
-                {/* Twitter Icon */}
                 <Image src="/twitter-x-icon.webp" alt="Twitter Icon" boxSize="50px" mx={2} />
-
-                {/* Facebook Icon */}
                 <Image src="/fb-icon.png" alt="Facebook Icon" boxSize="50px" mx={2} />
             </Flex>
-            {/* Add your social media icons or buttons here */}
         </Box>
     );
 };
