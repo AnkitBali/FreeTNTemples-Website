@@ -45,7 +45,7 @@ const TopDescription = () => {
             <Flex>
             <Box
                 position="absolute"
-                top="50%"
+                top={{md: "60%", lg:"50%"}}
                 left="30%"
                 transform="translate(-50%, -50%)"
                 color="white"
@@ -55,8 +55,8 @@ const TopDescription = () => {
                 zIndex={1}
             >
                 {/* Main Text */}
-                <Box width="600px">
-                <Text fontSize="18px" mb={6} color="#28231e">
+                <Box width={{md: "500px", lg:"600px"}}>
+                <Text fontSize={{md: "14px", lg:"18px"}} fontWeight="bold" mb={6} color="#28231e">
                     Tamil Nadu's temples, the soul of Tamil culture and the core of Tamil spiritual ethos, are being suffocated to death. A vicious policy of seizing control over temples to take over their land and revenue was begun by the East India Company, 200 years ago.
                     <br />
                     <br />

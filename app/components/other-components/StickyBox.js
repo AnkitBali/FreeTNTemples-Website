@@ -174,11 +174,22 @@ export const isVisInViewport = element => {
 
 const StickyBox = () => {
     const [isSticky, setIsSticky] = useState(false);
+    const isMobile = useMediaQuery({ maxWidth: 767})
 
     const handleScroll = () => {
+        const stickyBoxElement = document.getElementById('sticky-box');
+        if (!stickyBoxElement) return;
+
         const stickyBoxOffsetTop = document.getElementById('sticky-box').offsetTop;
+
+        // Subtract a certain amount to make the box sticky earlier
+        // Adjust this value to meet your requirements
+        const offsetToStartSticking = -270; // Decrease by 100 pixels, for example
+
+        const adjustedOffsetTop = stickyBoxOffsetTop - offsetToStartSticking;
+
         const scrollPosition = window.scrollY;
-        setIsSticky(scrollPosition >= stickyBoxOffsetTop);
+        setIsSticky(scrollPosition >= adjustedOffsetTop);
     };
 
     useEffect(() => {
@@ -187,51 +198,55 @@ const StickyBox = () => {
     }, []);
 
   
-    return (
+    return !isMobile && (
         <Box
             id="sticky-box"
             position={isSticky ? "fixed" : "absolute"}
-            top={isSticky ? "50%" : "50%"}
+            top={{md: "50%", lg:"40%"}}
             right={isSticky ? "10%" : "10%"}
             transform="translateY(-50%)"
             p={6}
             bgColor="white"
             boxShadow="2xl"
             textAlign="center"
-            width="400px"
+            width={{md: "300px", lg:"400px"}}
             zIndex={2}
         >
-            <Text fontSize="32px" fontWeight="bold" color="#000000" mb={8}>
+            <Text fontSize={{md: "28px", lg:"32px"}} fontWeight="bold" color="#000000" mb={8}>
                 #FreeTNTemples
             </Text>
             <Button
                 bg="#fac654"
                 color="black"
                 _hover={{ bg: 'yellow.600' }}
-                width="300px"
-                fontSize="16px"
+                width={{md: "250px", lg:"300px"}}
+                fontSize={{md: "14px", lg:"16px"}}
                 mb={4}
                 onClick={() => window.location.href = 'your-support-url'}
             >
                 Click Here to Support
             </Button>
-            <Text fontSize="25px" fontWeight="200px" color="#000000" mb={2}>OR</Text>
-            <Text fontSize="25px" fontWeight="200px" color="#000000" mb={2}>
+            <Text fontSize={{md: "22px", lg:"25px"}} fontWeight="200px" color="#000000" mb={2}>OR</Text>
+            <Text fontSize={{md: "22px", lg: "25px"}} fontWeight="200px" color="#000000" mb={2}>
                 Show your support with a missed call
             </Text>
-            <Flex fontSize="32px" fontWeight="bold" color="#61351a" mb={8} align="center" justify="center">
-                <img src="/missed-call-icon.svg" alt="Missed Call Icon" width="35px" height="35px" style={{ marginRight: '8px' }} />
+            <Flex fontSize={{md: "25px",lg:"32px"}} fontWeight="bold" color="#61351a" mb={8} align="center" justify="center">
+                <Image src="/missed-call-icon.svg" alt="Missed Call Icon" width={{ md: "30px", lg: "35px" }} height={{ md: "30px", lg: "35px" }} style={{ marginRight: '8px' }} />
                 83000 83000
             </Flex>
-            <Text fontSize="18px" fontWeight="bold" color="#000000" mb={4}>
+            <Text fontSize={{md: "14px", lg:"18px"}} fontWeight="bold" color="#000000" mb={4}>
                 Tell your family & friends to show their support with a missed call.
             </Text>
-            <Image 
-            />
             <Flex align="center" justify="center">
-                <Image src="/whatsapp-icon.png" alt="Whatsapp Icon" boxSize="50px" mx={2} />
-                <Image src="/twitter-x-icon.webp" alt="Twitter Icon" boxSize="50px" mx={2} />
-                <Image src="/fb-icon.png" alt="Facebook Icon" boxSize="50px" mx={2} />
+                <Image src="/whatsapp-icon.png" alt="Whatsapp Icon" boxSize="50px"
+                    width={{ md: "40px", lg: "50px" }} height={{ md: "40px", lg: "50px" }}
+                     mx={2} />
+                <Image src="/twitter-x-icon.webp" alt="Twitter Icon" boxSize="50px"
+                    width={{ md: "35px", lg: "45px" }} height={{ md: "35px", lg: "45px" }} 
+                    mx={2} />
+                <Image src="/fb-icon.png" alt="Facebook Icon" boxSize="50px"
+                    width={{ md: "35px", lg: "45px" }} height={{ md: "35px", lg: "45px" }}
+                     mx={2} />
             </Flex>
         </Box>
     );
