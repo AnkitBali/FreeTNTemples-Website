@@ -161,7 +161,7 @@
 // StickyBox.js
 import React, { useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { Box, Button, Text, Flex, Image } from '@chakra-ui/react';
+import { Box, Button, Text, Flex, Image, useBreakpointValue } from '@chakra-ui/react';
 
 export const isVisInViewport = element => {
     const rect = element.getBoundingClientRect();
@@ -176,17 +176,16 @@ const StickyBox = () => {
     const [isSticky, setIsSticky] = useState(false);
     const isMobile = useMediaQuery({ maxWidth: 767})
 
+    // Define offset values for different breakpoints
+    const offsetToStartSticking = useBreakpointValue({ md: 300, lg: 270 });
+
     const handleScroll = () => {
         const stickyBoxElement = document.getElementById('sticky-box');
         if (!stickyBoxElement) return;
 
-        const stickyBoxOffsetTop = document.getElementById('sticky-box').offsetTop;
+        const stickyBoxOffsetTop = stickyBoxElement.offsetTop;
 
-        // Subtract a certain amount to make the box sticky earlier
-        // Adjust this value to meet your requirements
-        const offsetToStartSticking = -270; // Decrease by 100 pixels, for example
-
-        const adjustedOffsetTop = stickyBoxOffsetTop - offsetToStartSticking;
+        const adjustedOffsetTop = stickyBoxOffsetTop + (offsetToStartSticking || 0); // Fallback to 0 if undefined
 
         const scrollPosition = window.scrollY;
         setIsSticky(scrollPosition >= adjustedOffsetTop);
@@ -195,57 +194,57 @@ const StickyBox = () => {
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [offsetToStartSticking]);
 
   
     return !isMobile && (
         <Box
             id="sticky-box"
             position={isSticky ? "fixed" : "absolute"}
-            top={{md: "50%", lg:"40%"}}
-            right={isSticky ? "10%" : "10%"}
+            top={{md: "45%", lg:"40%"}}
+            right={{ md: "3%", xl: "10%" }}
             transform="translateY(-50%)"
             p={6}
             bgColor="white"
             boxShadow="2xl"
             textAlign="center"
-            width={{md: "300px", lg:"400px"}}
-            zIndex={2}
+            width={{md: "280px", xl:"400px"}}
+            zIndex={16}
         >
-            <Text fontSize={{md: "28px", lg:"32px"}} fontWeight="bold" color="#000000" mb={8}>
+            <Text fontSize={{md: "24px", xl:"32px"}} fontWeight="bold" color="#000000" mb={{md: "16px", xl: "18px"}}>
                 #FreeTNTemples
             </Text>
             <Button
                 bg="#fac654"
                 color="black"
                 _hover={{ bg: 'yellow.600' }}
-                width={{md: "250px", lg:"300px"}}
-                fontSize={{md: "14px", lg:"16px"}}
-                mb={4}
+                width={{md: "200px", xl:"300px"}}
+                fontSize={{md: "14px", xl:"16px"}}
+                mb={{md: "12px", xl: "18px"}}
                 onClick={() => window.location.href = 'your-support-url'}
             >
                 Click Here to Support
             </Button>
-            <Text fontSize={{md: "22px", lg:"25px"}} fontWeight="200px" color="#000000" mb={2}>OR</Text>
-            <Text fontSize={{md: "22px", lg: "25px"}} fontWeight="200px" color="#000000" mb={2}>
+            <Text fontSize={{ md: "20px", xl: "25px" }} fontWeight="200px" color="#000000" mb={{ md: "8px", lg: "18px" }}>OR</Text>
+            <Text fontSize={{ md: "20px", xl: "25px" }} fontWeight="200px" color="#000000" mb={{ md: "8px", lg: "18px" }}>
                 Show your support with a missed call
             </Text>
-            <Flex fontSize={{md: "25px",lg:"32px"}} fontWeight="bold" color="#61351a" mb={8} align="center" justify="center">
+            <Flex fontSize={{ md: "25px", xl: "32px" }} fontWeight="bold" color="#61351a" mb={{ md: "14px", lg: "18px" }} align="center" justify="center">
                 <Image src="/missed-call-icon.svg" alt="Missed Call Icon" width={{ md: "30px", lg: "35px" }} height={{ md: "30px", lg: "35px" }} style={{ marginRight: '8px' }} />
                 83000 83000
             </Flex>
-            <Text fontSize={{md: "14px", lg:"18px"}} fontWeight="bold" color="#000000" mb={4}>
+            <Text fontSize={{ md: "14px", xl: "18px" }} fontWeight="bold" color="#000000" mb={{ md: "8px", lg: "18px" }}>
                 Tell your family & friends to show their support with a missed call.
             </Text>
             <Flex align="center" justify="center">
                 <Image src="/whatsapp-icon.png" alt="Whatsapp Icon" boxSize="50px"
-                    width={{ md: "40px", lg: "50px" }} height={{ md: "40px", lg: "50px" }}
+                    width={{ md: "40px", xl: "50px" }} height={{ md: "40px", xl: "50px" }}
                      mx={2} />
                 <Image src="/twitter-x-icon.webp" alt="Twitter Icon" boxSize="50px"
-                    width={{ md: "35px", lg: "45px" }} height={{ md: "35px", lg: "45px" }} 
+                    width={{ md: "35px", xl: "45px" }} height={{ md: "35px", xl: "45px" }} 
                     mx={2} />
                 <Image src="/fb-icon.png" alt="Facebook Icon" boxSize="50px"
-                    width={{ md: "35px", lg: "45px" }} height={{ md: "35px", lg: "45px" }}
+                    width={{ md: "35px", xl: "45px" }} height={{ md: "35px", xl: "45px" }}
                      mx={2} />
             </Flex>
         </Box>

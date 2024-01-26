@@ -39,14 +39,16 @@ const TopDescription = () => {
                 objectFit="cover"
                 alt="Background Image"
                 zIndex={-1}
+                height={{base: "700px", sm: "500px", md: "600px", xl:"100%"}}
+                // height={"600px"}
             />
 
             {/* Content */}
             <Flex>
             <Box
                 position="absolute"
-                top={{md: "60%", lg:"50%"}}
-                left="30%"
+                top={{base: "50%", sm: "50%", md: "50%", xl:"50%"}}
+                left={{base: "50%", sm: "50%", md:"30%"}}
                 transform="translate(-50%, -50%)"
                 color="white"
                 textAlign="left"
@@ -55,8 +57,8 @@ const TopDescription = () => {
                 zIndex={1}
             >
                 {/* Main Text */}
-                <Box width={{md: "500px", lg:"600px"}}>
-                <Text fontSize={{md: "14px", lg:"18px"}} fontWeight="bold" mb={6} color="#28231e">
+                <Box width={{base: "300px", sm: "400px", md: "350px", xl:"600px"}}>
+                <Text fontSize={{sm: "10px", md: "12px", xl:"18px"}} fontWeight="bold" mb={6} color="#28231e">
                     Tamil Nadu's temples, the soul of Tamil culture and the core of Tamil spiritual ethos, are being suffocated to death. A vicious policy of seizing control over temples to take over their land and revenue was begun by the East India Company, 200 years ago.
                     <br />
                     <br />
@@ -64,14 +66,14 @@ const TopDescription = () => {
                     <br />
                     <br />
                     Powerfully consecrated temples are losing their vibrance and crumbling, causing enormous pain to crores of devotees and communities.
-                    <br />
-                    <br />
+                    
                 </Text>
                 </Box>
 
                 {/* Embedded YouTube Video */}
                 <EmbeddedYouTubeVideo imageSrc='/top-description-yt-image.jpeg'
                     videoSrc='https://www.youtube.com/embed/KHkxs7Cnwp4'
+                    // width={"100%"}
                     />
             </Box>
             <Box 

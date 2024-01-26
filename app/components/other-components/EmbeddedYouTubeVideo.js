@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AspectRatio, Box, Flex, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Text } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
-const EmbeddedYouTubeVideo = ({ imageSrc, videoSrc, caption }) => {
+const EmbeddedYouTubeVideo = ({ imageSrc, videoSrc, caption, width, height }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const handlePlayButtonClick = () => {
@@ -16,10 +16,12 @@ const EmbeddedYouTubeVideo = ({ imageSrc, videoSrc, caption }) => {
     return (
         <>
             {/* Embedded YouTube Video */}
-            <AspectRatio ratio={16 / 9} mb={6}>
+            <AspectRatio ratio={16 / 9} 
+            mb={6}
+            >
                 <Box position="relative" cursor="pointer" onClick={handlePlayButtonClick}>
                     {/* Image with Play Button Overlay */}
-                    <Image src={imageSrc} layout="fill" objectFit="cover" alt="Video Thumbnail" />
+                    <Image width={width} height={height} src={imageSrc} layout="fill" objectFit="cover" alt="Video Thumbnail" />
                     {/* Outer Disk (Hollow Ring) */}
                     <Box
                         width="70px"  // Set the desired size for the outer disk

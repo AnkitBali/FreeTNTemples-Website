@@ -4,6 +4,7 @@ import TopDescription from './components/main-page-components/TopDescription';
 import StickyBox from './components/other-components/StickyBox';
 import DyingTemples from './components/main-page-components/DyingTemples';
 import { Flex, Box } from '@chakra-ui/react';
+import StickyButton from './components/other-components/StickyButton';
 
  
 export default function HomePage() {
@@ -15,6 +16,7 @@ export default function HomePage() {
       
       <TopDescription />
       <DyingTemples />
+      <StickyButton />
       
         
       </ChakraProvider>
