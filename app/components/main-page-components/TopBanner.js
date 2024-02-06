@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import Navbar from './Header';
+// import Header from '../main-page-components/Header';
 // import Image from 'next/image';
 import {
   Box,
@@ -21,7 +23,10 @@ import {
   Flex,
 } from '@chakra-ui/react';
 
+{/* <Header /> */}
 const TopBanner = () => {
+ 
+  
   const { isOpen, onOpen, onClose } = useDisclosure();
   const imageSrc = useBreakpointValue({
     base: '/free-temple-banner-mob.jpg',
@@ -40,12 +45,14 @@ const TopBanner = () => {
 
   return (
     <>
+    
     <Box
       position="relative"
       // w={{base:"100%", md: "100%"}}
       // h={{base: 'auto', md:"100%"}}
       overflow="hidden"
     >
+      
       <Image
         src={imageSrc}
         fallbackSrc={imageSrc}
@@ -55,6 +62,8 @@ const TopBanner = () => {
         w='100%'
         // h={'600'}
       />
+      
+      
 
       <Box
         position="absolute"
@@ -67,6 +76,11 @@ const TopBanner = () => {
           // width={{ base: '100%', md: '1px' }}
         
       >
+        {/* <Box position='fixed' left={'0%'} width='2350px' top={'-35%'} > */}
+            {/* <Navbar /> */}
+        {/* </Box> */}
+        
+        
           <Flex flexDirection={{ base: 'column-reverse', sm: 'row' }} justifyContent={{ base: 'flex-start', md: 'space-between' }}>
             <Box >
           <Box width={{base: '380px', sm: '300px', md: '400px', lg: '', xl: '500px'}}  mt={{base:'0px', xl:'-4px'}}>
@@ -112,6 +126,7 @@ const TopBanner = () => {
                 </Button>
                 </Flex>)}
         </Box>
+        <Navbar />
 
           </Box>
 
