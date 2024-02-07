@@ -65,19 +65,20 @@ const Navbar = () => {
     return (
         <>
             {/* Desktop Navbar */}
-            <Box
+            <Flex
                 as="nav"
                 id='abc'
                 align="center"
                 justify="space-between"
                 wrap="wrap"
-                w="1350px"
+                w="1450px"
                 p={4}
-                bg="customBrown"
+                // bg="customBrown"
+                bg="rgba(101, 67, 33, 0.8)" // Dark brown color with 80% opacity
                 color="white"
                 position={"fixed"}
-                top={'-35%'}
-                zIndex={999}
+                top={'0'}
+                // zIndex={999}
                 boxShadow="md"
             >
                 <Box display={{ base: 'block', md: 'none' }} onClick={onToggle}>
@@ -129,7 +130,7 @@ const Navbar = () => {
                         English
                     </Button>
                 </Box>
-            </Box>
+            </Flex>
 
             {/* Mobile Navbar
             {isOpen && (

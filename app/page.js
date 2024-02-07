@@ -21,11 +21,19 @@ export default function HomePage() {
       <ChakraProvider>
         {/* <Header /> */}
         <Box position={"relative"}>
+          <Box
+          position={'fixed'}
+          zIndex={100}
+          top={'10%'}
+          // fontSize={"50px"}
+          >
+            <Navbar />
+          </Box>
         
         <Element name="topBanner">
           <TopBanner />
           {/* <PageLayout /> */}
-            <Navbar />
+            
         </Element>
         <Element name="topDescription">
           <TopDescription />

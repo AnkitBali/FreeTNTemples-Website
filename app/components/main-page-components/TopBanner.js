@@ -126,7 +126,7 @@ const TopBanner = () => {
                 </Button>
                 </Flex>)}
         </Box>
-        <Navbar />
+        {/* <Navbar /> */}
 
           </Box>
 
