@@ -12,7 +12,7 @@ const HeartBreakingStories = () => {
             id: 1,
             title: "Post 1",
             content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id risus lacinia, lacinia justo nec, fermentum felis. Proin nec ultrices enim. Vivamus vitae leo ut nulla dictum aliquet. Duis sit amet turpis nec ligula cursus malesuada. Sed fermentum, mi nec commodo consectetur, sem nisi iaculis risus, sit amet fringilla turpis ligula et mi.",
-            image: "https://via.placeholder.com/150"
+            image: "/tileImage2.png"
         },
         {
             id: 2,

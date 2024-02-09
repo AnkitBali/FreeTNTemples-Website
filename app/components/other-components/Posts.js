@@ -43,9 +43,11 @@ const Posts = ({ posts }) => {
                         height="50px"
                         marginRight="4"
                     />
-                    <Box flex="1">
-                        <Text fontSize="xl" fontWeight="bold">{post.title}</Text>
-                        <Text>{post.content.substring(0, 100)}...</Text>
+                    <Box flex="1"
+                    textAlign={"left"}
+                    >
+                        <Text color={"gray.600"} fontSize="xl" fontWeight="bold">{post.title} :</Text>
+                        <Text color={"gray.500"}>{post.content.substring(0, 100)}...</Text>
                     </Box>
                     <Button onClick={() => handleReadMore(post)}>Read More</Button>
                 </Box>
