@@ -46,12 +46,13 @@
 // export default Header;
 
 // Import necessary Chakra UI components
-import { Box, Flex, Text, Button, useDisclosure, Link } from '@chakra-ui/react';
+import { Box, Flex, Text, Button, useDisclosure, Spacer, HStack} from '@chakra-ui/react';
+import { Link as ScrollLink } from 'react-scroll';
 
 // Your navigation data
 const navData = [
-    { id: 1, title: "Dying Temple", path: "dyingtemple" },
-    { id: 2, title: "Free Temple", path: "freetemple" },
+    { id: 1, title: "Dying Temple", path: "dyingTemples" },
+    { id: 2, title: "Free Temple", path: "freeTemples" },
     { id: 3, title: "Heartbreaking Stories", path: "heartbreakingStories" },
     { id: 4, title: "HR&CE", path: "hrce" },
     { id: 5, title: "Past Glory", path: "glory" },
@@ -71,14 +72,15 @@ const Navbar = () => {
                 align="center"
                 justify="space-between"
                 wrap="wrap"
-                w="1450px"
+                w={{base:'auto', md: 'full'}}
+                // h={'10px'}
                 p={4}
                 // bg="customBrown"
                 bg="rgba(101, 67, 33, 0.8)" // Dark brown color with 80% opacity
                 color="white"
                 position={"fixed"}
                 top={'0'}
-                // zIndex={999}
+                zIndex={999}
                 boxShadow="md"
             >
                 <Box display={{ base: 'block', md: 'none' }} onClick={onToggle}>
@@ -97,14 +99,23 @@ const Navbar = () => {
                         />
                     </svg>
                 </Box>
-                <Box
+                
+                <HStack
                     display={{ base: isOpen ? 'block' : 'none', md: 'flex' }}
                     width={{ base: 'full', md: 'auto' }}
-                    alignItems="center"
-                    flexGrow={1}
+                    // alignItems="center"
+                    // flexGrow={1}
+                    ml={{base: 'auto', md: '20px'}}
+                    // justify="space-around"
+                    // space-x={40}
+                    // mr={40}
+                    // wrap="wrap"
+                    fontWeight={'bold'}
+                    spacing={{base:"auto", md:'20px'}}
                 >
-                    {navData.map((el) => (
-                        <Link
+                    {navData.map((el, index) => (
+                        <>
+                        <ScrollLink
                             key={el.id}
                             to={el.path}
                             smooth={true}
@@ -113,18 +124,21 @@ const Navbar = () => {
                             offset={-68}
                             activeClass="text-[#fac654]"
                             px={2}
-                            py={1}
+                            py={2}
                             fontWeight="bold"
                             color="white"
+                            mr={index !== navData.length - 1 ? 4 : 0} // Add margin to the right except for the last item
                             _hover={{
                                 textDecoration: 'none',
                                 color: '#febd2c',
                             }}
                         >
                             {el.title}
-                        </Link>
+                        </ScrollLink>
+                        <Spacer />
+                        </>
                     ))}
-                </Box>
+                </HStack>
                 <Box display={{ base: isOpen ? 'block' : 'none', md: 'block' }}>
                     <Button bg="#febd2c" color="black">
                         English
@@ -132,7 +146,7 @@ const Navbar = () => {
                 </Box>
             </Flex>
 
-            {/* Mobile Navbar
+            {/* Mobile Navbar */}
             {isOpen && (
                 <Box
                     display={{ base: 'block', md: 'none' }}
@@ -146,7 +160,7 @@ const Navbar = () => {
                     boxShadow="md"
                 >
                     {navData.map((el) => (
-                        <Link
+                        <ScrollLink
                             key={el.id}
                             to={el.path}
                             smooth={true}
@@ -165,11 +179,11 @@ const Navbar = () => {
                             }}
                         >
                             {el.title}
-                        </Link>
+                        </ScrollLink>
                     ))}
                 </Box>
                 
-            )} */}
+            )}
             {/* <style global jsx>
                 {`
         #abc {

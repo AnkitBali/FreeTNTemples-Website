@@ -1,17 +1,23 @@
 'use client';
 
-import { ChakraProvider } from '@chakra-ui/react';
+
+// page imports : 
+import DyingTemples from './components/main-page-components/DyingTemples';
 import TopBanner from './components/main-page-components/TopBanner';
 import TopDescription from './components/main-page-components/TopDescription';
-import StickyBox from './components/other-components/StickyBox';
-import DyingTemples from './components/main-page-components/DyingTemples';
-import { Flex, Box } from '@chakra-ui/react';
-import StickyButton from './components/other-components/StickyButton';
+import { ChakraProvider } from '@chakra-ui/react';
 import FreeTemples from './components/main-page-components/FreeTemples';
+import HeartBreakingStories from './components/main-page-components/HeartBreakingStories';
+
+// Component imports : 
+import StickyButton from './components/other-components/StickyButton';
+import StickyBox from './components/other-components/StickyBox';
+import { Flex, Box } from '@chakra-ui/react';
 import Header from './components/main-page-components/Header';
 import { Element } from 'react-scroll';
 import PageLayout from './components/other-components/PageLayout';
 import Navbar from './components/main-page-components/Header';
+
  
 export default function HomePage() {
  
@@ -21,28 +27,23 @@ export default function HomePage() {
       <ChakraProvider>
         {/* <Header /> */}
         <Box position={"relative"}>
-          <Box
+          {/* <Box
           position={'fixed'}
           zIndex={100}
           top={'10%'}
           // fontSize={"50px"}
-          >
+          > */}
             <Navbar />
-          </Box>
-        
-        <Element name="topBanner">
+          {/* </Box> */}
           <TopBanner />
-          {/* <PageLayout /> */}
-            
-        </Element>
-        <Element name="topDescription">
           <TopDescription />
-        </Element>
-        
-      
-      
+      <Element name="dyingTemples">
       <DyingTemples />
+          </Element>
+          <Element name="freeTemples">
       <FreeTemples />
+          </Element>
+          <HeartBreakingStories />
       <StickyButton />
         </Box>
         

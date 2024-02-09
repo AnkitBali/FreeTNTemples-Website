@@ -64,7 +64,7 @@ const DyingTemples = () => (
             height={'1500px'}
         />
 
-        {/* Comtent */}
+        {/* Content */}
         <Box 
         position="absolute" 
         top="50%" 

@@ -47,7 +47,8 @@ const FreeTemples = () => {
                 >
                 <Text textAlign={"center"} width={"600px"} fontSize="32px" fontWeight="bold">Why We Should Free Tamil Nadu's Temples</Text>
                 <Box 
-                mt={'10xz0px'}
+                // mt={'10xz 0px'}
+                mt={'90px'}
                 >
                 <Posts posts={posts} />
                 </Box>

@@ -2,8 +2,8 @@
 
 // Posts.js
 
-import React from 'react';
-import { Box, Text } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { Box, Text, Image, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter } from '@chakra-ui/react';
 
 const Posts = ({ posts }) => {
     // Check if posts are provided and not empty
@@ -14,14 +14,60 @@ const Posts = ({ posts }) => {
         </Box>)
     }
 
+    const [selectedPost, setSelectedPost] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleReadMore = (post) => {
+        setSelectedPost(post);
+        setIsOpen(true);
+    };
+
+
     return (
-        <Box alignContent={"center"}>
+        <Box>
             {posts.map((post, index) => (
-                <Box key={index} marginY="4">
-                    <Text fontSize="20px" fontWeight="bold">{post.title}</Text>
-                    <Text fontSize="16px">{post.content}</Text>
+                <Box
+                    key={index}
+                    backgroundColor="white"
+                    boxShadow="md"
+                    borderRadius="md"
+                    padding="4"
+                    marginBottom="4"
+                    display="flex"
+                    alignItems="center"
+                >
+                    <Image
+                        src={post.image}
+                        alt={post.title}
+                        width="50px"
+                        height="50px"
+                        marginRight="4"
+                    />
+                    <Box flex="1">
+                        <Text fontSize="xl" fontWeight="bold">{post.title}</Text>
+                        <Text>{post.content.substring(0, 100)}...</Text>
+                    </Box>
+                    <Button onClick={() => handleReadMore(post)}>Read More</Button>
                 </Box>
             ))}
+
+            {/* Modal */}
+            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>{selectedPost && selectedPost.title}</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <Image src={selectedPost && selectedPost.image} alt={selectedPost && selectedPost.title} />
+                        <Text>{selectedPost && selectedPost.content}</Text>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button colorScheme="blue" mr={3} onClick={() => setIsOpen(false)}>
+                            Close
+                        </Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
         </Box>
     );
 };

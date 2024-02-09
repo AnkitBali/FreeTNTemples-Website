@@ -1,0 +1,25 @@
+"use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+exports.id = "vendor-chunks/unzip-response";
+exports.ids = ["vendor-chunks/unzip-response"];
+exports.modules = {
+
+/***/ "(ssr)/./node_modules/unzip-response/index.js":
+/*!**********************************************!*\
+  !*** ./node_modules/unzip-response/index.js ***!
+  \**********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("\nconst PassThrough = (__webpack_require__(/*! stream */ \"stream\").PassThrough);\nconst zlib = __webpack_require__(/*! zlib */ \"zlib\");\nmodule.exports = (res)=>{\n    // TODO: use Array#includes when targeting Node.js 6\n    if ([\n        \"gzip\",\n        \"deflate\"\n    ].indexOf(res.headers[\"content-encoding\"]) === -1) {\n        return res;\n    }\n    const unzip = zlib.createUnzip();\n    const stream = new PassThrough();\n    stream.httpVersion = res.httpVersion;\n    stream.headers = res.headers;\n    stream.rawHeaders = res.rawHeaders;\n    stream.trailers = res.trailers;\n    stream.rawTrailers = res.rawTrailers;\n    stream.setTimeout = res.setTimeout.bind(res);\n    stream.statusCode = res.statusCode;\n    stream.statusMessage = res.statusMessage;\n    stream.socket = res.socket;\n    unzip.on(\"error\", (err)=>{\n        if (err.code === \"Z_BUF_ERROR\") {\n            stream.end();\n            return;\n        }\n        stream.emit(\"error\", err);\n    });\n    res.pipe(unzip).pipe(stream);\n    return stream;\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9ub2RlX21vZHVsZXMvdW56aXAtcmVzcG9uc2UvaW5kZXguanMiLCJtYXBwaW5ncyI6IkFBQUE7QUFDQSxNQUFNQSxjQUFjQyx5REFBNkI7QUFDakQsTUFBTUMsT0FBT0QsbUJBQU9BLENBQUM7QUFFckJFLE9BQU9DLE9BQU8sR0FBR0MsQ0FBQUE7SUFDaEIsb0RBQW9EO0lBQ3BELElBQUk7UUFBQztRQUFRO0tBQVUsQ0FBQ0MsT0FBTyxDQUFDRCxJQUFJRSxPQUFPLENBQUMsbUJBQW1CLE1BQU0sQ0FBQyxHQUFHO1FBQ3hFLE9BQU9GO0lBQ1I7SUFFQSxNQUFNRyxRQUFRTixLQUFLTyxXQUFXO0lBQzlCLE1BQU1DLFNBQVMsSUFBSVY7SUFFbkJVLE9BQU9DLFdBQVcsR0FBR04sSUFBSU0sV0FBVztJQUNwQ0QsT0FBT0gsT0FBTyxHQUFHRixJQUFJRSxPQUFPO0lBQzVCRyxPQUFPRSxVQUFVLEdBQUdQLElBQUlPLFVBQVU7SUFDbENGLE9BQU9HLFFBQVEsR0FBR1IsSUFBSVEsUUFBUTtJQUM5QkgsT0FBT0ksV0FBVyxHQUFHVCxJQUFJUyxXQUFXO0lBQ3BDSixPQUFPSyxVQUFVLEdBQUdWLElBQUlVLFVBQVUsQ0FBQ0MsSUFBSSxDQUFDWDtJQUN4Q0ssT0FBT08sVUFBVSxHQUFHWixJQUFJWSxVQUFVO0lBQ2xDUCxPQUFPUSxhQUFhLEdBQUdiLElBQUlhLGFBQWE7SUFDeENSLE9BQU9TLE1BQU0sR0FBR2QsSUFBSWMsTUFBTTtJQUUxQlgsTUFBTVksRUFBRSxDQUFDLFNBQVNDLENBQUFBO1FBQ2pCLElBQUlBLElBQUlDLElBQUksS0FBSyxlQUFlO1lBQy9CWixPQUFPYSxHQUFHO1lBQ1Y7UUFDRDtRQUVBYixPQUFPYyxJQUFJLENBQUMsU0FBU0g7SUFDdEI7SUFFQWhCLElBQUlvQixJQUFJLENBQUNqQixPQUFPaUIsSUFBSSxDQUFDZjtJQUVyQixPQUFPQTtBQUNSIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vbm9kZV9tb2R1bGVzL3VuemlwLXJlc3BvbnNlL2luZGV4LmpzP2JkYzIiXSwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBzdHJpY3QnO1xuY29uc3QgUGFzc1Rocm91Z2ggPSByZXF1aXJlKCdzdHJlYW0nKS5QYXNzVGhyb3VnaDtcbmNvbnN0IHpsaWIgPSByZXF1aXJlKCd6bGliJyk7XG5cbm1vZHVsZS5leHBvcnRzID0gcmVzID0+IHtcblx0Ly8gVE9ETzogdXNlIEFycmF5I2luY2x1ZGVzIHdoZW4gdGFyZ2V0aW5nIE5vZGUuanMgNlxuXHRpZiAoWydnemlwJywgJ2RlZmxhdGUnXS5pbmRleE9mKHJlcy5oZWFkZXJzWydjb250ZW50LWVuY29kaW5nJ10pID09PSAtMSkge1xuXHRcdHJldHVybiByZXM7XG5cdH1cblxuXHRjb25zdCB1bnppcCA9IHpsaWIuY3JlYXRlVW56aXAoKTtcblx0Y29uc3Qgc3RyZWFtID0gbmV3IFBhc3NUaHJvdWdoKCk7XG5cblx0c3RyZWFtLmh0dHBWZXJzaW9uID0gcmVzLmh0dHBWZXJzaW9uO1xuXHRzdHJlYW0uaGVhZGVycyA9IHJlcy5oZWFkZXJzO1xuXHRzdHJlYW0ucmF3SGVhZGVycyA9IHJlcy5yYXdIZWFkZXJzO1xuXHRzdHJlYW0udHJhaWxlcnMgPSByZXMudHJhaWxlcnM7XG5cdHN0cmVhbS5yYXdUcmFpbGVycyA9IHJlcy5yYXdUcmFpbGVycztcblx0c3RyZWFtLnNldFRpbWVvdXQgPSByZXMuc2V0VGltZW91dC5iaW5kKHJlcyk7XG5cdHN0cmVhbS5zdGF0dXNDb2RlID0gcmVzLnN0YXR1c0NvZGU7XG5cdHN0cmVhbS5zdGF0dXNNZXNzYWdlID0gcmVzLnN0YXR1c01lc3NhZ2U7XG5cdHN0cmVhbS5zb2NrZXQgPSByZXMuc29ja2V0O1xuXG5cdHVuemlwLm9uKCdlcnJvcicsIGVyciA9PiB7XG5cdFx0aWYgKGVyci5jb2RlID09PSAnWl9CVUZfRVJST1InKSB7XG5cdFx0XHRzdHJlYW0uZW5kKCk7XG5cdFx0XHRyZXR1cm47XG5cdFx0fVxuXG5cdFx0c3RyZWFtLmVtaXQoJ2Vycm9yJywgZXJyKTtcblx0fSk7XG5cblx0cmVzLnBpcGUodW56aXApLnBpcGUoc3RyZWFtKTtcblxuXHRyZXR1cm4gc3RyZWFtO1xufTtcbiJdLCJuYW1lcyI6WyJQYXNzVGhyb3VnaCIsInJlcXVpcmUiLCJ6bGliIiwibW9kdWxlIiwiZXhwb3J0cyIsInJlcyIsImluZGV4T2YiLCJoZWFkZXJzIiwidW56aXAiLCJjcmVhdGVVbnppcCIsInN0cmVhbSIsImh0dHBWZXJzaW9uIiwicmF3SGVhZGVycyIsInRyYWlsZXJzIiwicmF3VHJhaWxlcnMiLCJzZXRUaW1lb3V0IiwiYmluZCIsInN0YXR1c0NvZGUiLCJzdGF0dXNNZXNzYWdlIiwic29ja2V0Iiwib24iLCJlcnIiLCJjb2RlIiwiZW5kIiwiZW1pdCIsInBpcGUiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(ssr)/./node_modules/unzip-response/index.js\n");
+
+/***/ })
+
+};
+;
